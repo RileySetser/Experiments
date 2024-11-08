@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Point and Click prototype</title>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script>
+            let textAdvance = 0;
+
+            $(document).ready(() => {
+                $("#textbox").click((e) => {
+                    textAdvance++;
+                    $(e.currentTarget).html(newText());
+                })
+            })
+
+            function newText() {
+                var html = ``;
+                switch(textAdvance) {
+                    case 1: 
+                        html = `
+                        <p>Hey, you clicked on the textbox!<br>Thank you for clicking me!<br>Enjoy your next text.</p>
+                        `;
+                        break;
+                    case 2: 
+                        html = `
+                        <p>Cool, you clicked it again...<br>Didn't need to, but, thanks for doing it again.</p>
+                        `;
+                        break;
+                    case 3: 
+                        html = `
+                        <p>Alright, you can stop clicking me.<br>It still works...</p>
+                        `;
+                        break;
+                    case 4: 
+                        html = `
+                        <p>Dude, stop it! You're starting to piss me off!</p>
+                        `;
+                        break;
+                    case 5: 
+                        html = `
+                        <b>I SAID STOP!!</b>
+                        `;
+                        break;
+                    case 6: 
+                        html = `
+                        <p>You know what? I'll just stop responding to you if you keep clicking me.<br>This is the final message you're getting.<br>Please do something better with your time.</p>
+                        `;
+                        break;
+                    default: 
+                        html = `<p>...</p>`;
+                        break;
+                }
+                return html;
+            }
+        </script>
+        <style>
+            #scene {
+                width: 640px;
+                height: 480px;
+                background-color: black;
+                margin: auto;
+            }
+            #textbox {
+                width: 600px;
+                height: 150px;
+                border: 2px solid blue;
+                margin: auto;
+                margin-top: 5px;
+                padding: 4px;
+            }
+            p {
+                margin: 0;
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="scene">
+
+        </div>
+        <div id="textbox">
+            <p>Test text blah blah.</p>
+            <p>(Click on the text box to advance)</p>
+        </div>
+    </body>
+</html>

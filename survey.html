@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mockup EarthBound-styled Survey</title>
+        <script src="js/jquery-3.7.1.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yusei+Magic">
+        <script>
+            var json = `
+                [
+                    "Hello, World!@How do you do?",
+                    "That's great to hear!@(end of test)."
+                ]
+            `;
+            var strings = JSON.parse(json);
+            var a_num = 0;
+            var i = 0;
+            var out = ``;
+
+            function type(text) {
+                if (text[i] == "@") {
+                    out += "<br>"
+                } else {
+                    out += text[i];
+                }
+                $("#textbox").html(out)
+                i++;
+                if (i == text.length) {
+                    clearInterval(interval);
+                    revealArrow();
+                }
+            }
+            var interval = window.setInterval(type, 50, strings[0]);
+
+            function revealArrow() {
+                $("#next").attr("disabled", false);
+            }
+
+            function nextString() {
+                console.log("click");
+                $("#textbox").html("");
+                out = "";
+                i = 0;
+                $("#next").attr("disabled", true);
+                a_num++;
+                interval = window.setInterval(type, 50, strings[a_num]);
+            }
+
+            $(document).ready(() => {
+                $("#next").on("click", nextString);
+            })
+        </script>
+        <style>
+            body {
+                font-family: "Yusei Magic", sans-serif;
+                background: url("img/scrollBG1.png"), url("img/surveyBG1.gif")
+            }
+            div {
+                margin: auto;
+                width: 480px;
+                
+            }
+            #textbox {
+                padding: 5px 15px;
+                font-size: 13pt;
+                color: white;
+                width: 440px;
+                height: 80px;
+                background-color:black;
+                border: 4px solid white;
+                border-radius: 4px;
+            }
+            #next {
+                position: static;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div id="textbox">Hello, World!</div>
+            <button id="next" disabled="true">>></button>
+        </div>
+    </body>
+</html>
