@@ -27,7 +27,7 @@ var i = 0;
 var selectedID = 0;
 
 function spin() {
-    spinSFX.play();
+    //spinSFX.play();
     selectedID = Math.round(Math.random() * (list.title.length - 1));
     $("#result").text(list.title[selectedID]);
     i++
@@ -70,10 +70,13 @@ function revealResult() {
     $("#result").attr("style", "display: none;");
     $("#final-result").text(list.title[selectedID]);
     $("#popup").attr("style", false);
+    $("#spin-btn").text("Reroll!");
     resultSFX.play();
 }
 
 function startSpin() {
+    var bgm = new Audio("spinBGM.mp3");
+    bgm.play();
     $("#spin-btn").attr("disabled", true);
     $("#result").attr("style", false);
     $("#popup").attr("style", "display: none;");
